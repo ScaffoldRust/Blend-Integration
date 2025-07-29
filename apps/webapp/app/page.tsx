@@ -1,8 +1,33 @@
+import HeroSection from "@/components/home/hero-section";
+import { Book, Terminal } from 'lucide-react';
+import FinalCTASection from '@/components/home/final-cta-section';
+
 export default function Home() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
-      <div className="text-center space-y-6 p-8">
+    <>
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div className="p-8 space-y-6 text-center">
+        <HeroSection />
+        <FinalCTASection
+        headline="Ready to Build with Blend?"
+        subtitle="Join thousands of developers who trust Scaffold Rust for their financial integrations"
+        buttons={[
+          {
+            title: 'Start Building Now',
+            variant: 'secondary',
+            link: '/home',
+            icon: <Book className="w-4 h-4 mr-2" />,
+          },
+          {
+            title: 'Read Documentation',
+            variant: 'outline',
+            link: '/documentation',
+            icon: <Terminal className="w-4 h-4 mr-2" />,
+          },
+        ]}
+      />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
