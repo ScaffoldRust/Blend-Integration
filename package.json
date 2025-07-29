@@ -10,5 +10,8 @@
 	},
 	"scripts": {
 		"format-and-lint:fix": "biome check . --write"
+	},
+	"dependencies": {
+		"framer-motion": "^12.23.11"
 	}
 }
