@@ -1,5 +1,11 @@
+import DashboardHeader from "@/components/dashboard/dashboard-header";
+
 function page() {
-  return <div>page</div>;
+  return (
+    <div>
+      <DashboardHeader />
+    </div>
+  );
 }
 
 export default page;
