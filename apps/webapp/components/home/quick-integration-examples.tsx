@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import { ClipboardIcon } from '@heroicons/react/24/outline';
+import { Clipboard, Check } from 'lucide-react';
 import copy from 'copy-to-clipboard';
 import clsx from 'clsx';
 
@@ -75,14 +75,16 @@ const languages = ['rust', 'javascript', 'python'] as const;
 
 export default function QuickIntegrationExamples() {
   const [selectedLang, setSelectedLang] = useState<'rust' | 'javascript' | 'python'>('rust');
+  const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
     copy(codeExamples[selectedLang]);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
   };
 
   return (
     <div className="">
-      {/* Main Heading with Geist font styling */}
       <h1 
         className="text-black text-center mb-3"
         style={{
@@ -96,12 +98,10 @@ export default function QuickIntegrationExamples() {
         Quick Integration Examples
       </h1>
       
-      {/* Subtitle */}
-      <p className="text-[20px] text-gray-600  leading-relaxed text-center  mb-12">
+      <p className="text-[20px] text-gray-600 leading-relaxed text-center mb-12">
         Copy, paste, and customize these examples for your project
       </p>
 
-      {/* Language Tabs - Full width distribution */}
       <div className="flex w-full mb-8 bg-gray-200 p-1 rounded-lg">
         {languages.map((lang) => (
           <button
@@ -111,7 +111,7 @@ export default function QuickIntegrationExamples() {
               'flex-1 pb-3 text-sm font-medium transition-all duration-200 text-center flex items-center justify-center rounded-lg p-2',
               selectedLang === lang
                 ? 'bg-white text-black p-2'
-                : 'bg-gray-200 text-gray-700 '
+                : 'bg-gray-200 text-gray-700'
             )}
           >
             {lang.charAt(0).toUpperCase() + lang.slice(1)}
@@ -119,16 +119,14 @@ export default function QuickIntegrationExamples() {
         ))}
       </div>
 
-      {/* Code Block Container */}
       <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
-        {/* Header */}
         <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
           <div className="flex items-center justify-between">
             <div className='text-left'>
               <h3 className="text-lg font-semibold text-gray-900 mb-1">
                 Blend Pool Integration
               </h3>
-              <p className="text-[14px] text-gray-600  leading-relaxed">
+              <p className="text-[14px] text-gray-600 leading-relaxed">
                 Initialize and manage lending pools with Blend API
               </p>
             </div>
@@ -136,13 +134,12 @@ export default function QuickIntegrationExamples() {
               onClick={handleCopy}
               className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 hover:border-gray-400 transition-colors"
             >
-              <ClipboardIcon className="h-4 w-4" />
-              Copy
+              {copied ? <Check className="h-4 w-4 text-green-600" /> : <Clipboard className="h-4 w-4" />}
+              {copied ? 'Copied' : 'Copy'}
             </button>
           </div>
         </div>
 
-        {/* Code Block */}
         <div className="relative">
           <div className="bg-[#0F172A] overflow-x-auto">
             <SyntaxHighlighter
