@@ -1,4 +1,3 @@
-
 import { DashboardStatsCards } from "../../components/dashboard/dashboard-stats-cards";
 
 export default function Dashboard() {
@@ -10,4 +9,3 @@ export default function Dashboard() {
     </div>
   );
 }
-
