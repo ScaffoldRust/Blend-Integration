@@ -92,4 +92,4 @@ We welcome contributions! Feel free to submit pull requests or open issues.
 
 ---
 
-Made with ❤️ by the Blend Team
+Made with ❤️ by the Scaffold Rust Team
